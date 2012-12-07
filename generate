@@ -1,0 +1,45 @@
+#!/bin/bash
+source scripts.sh
+for arg in $*
+do
+    if [ $arg == '--help' ]
+    then
+        echo "help not done"
+        exit
+    elif [ $arg == '--exvars' ]
+    then
+        exvars=1
+    elif [ $arg == '--exfuncs' ]
+    then
+        exfuncs=1
+    elif [ $arg == '--allfuncs' ]
+    then
+        allfuncs=1
+    fi
+done
+echo "<!doctype html><html><head><title>Documentation</title><style>"
+cat bootstrap.css
+echo "</style><script>"
+cat jquery.js
+echo "</script><script>"
+cat bootstrap.js
+echo "</script></head><body><div class='container'>"
+for file in `find $1 -name '*.php'`
+do
+    echo '<h1>'$file'</h1>'
+    if [ $exfuncs -eq 0 ]
+    then
+        echo '<h3>User functions</h3>'
+        get_user_func $file
+    fi
+    echo '<h3>Included files</h3>'
+    get_included_files $file
+    echo '<h3>Constants</h3>'
+    get_constants $file
+    if [ $allfuncs -eq 1 ]
+    then
+        echo '<h3>All functions</h3>'
+        get_all_func $file
+    fi
+done
+echo "</div></body></html>"
