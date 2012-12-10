@@ -1,8 +1,8 @@
 #!/bin/bash
 #this works for ubuntu/ubuntu like os. You may have to manually install required packages if on other os
-yes|sudo apt-get install php5
+yes|sudo apt-get install php5 sysvbanner
 #with --all option you can get pdf of the document
-if [ $1 == '--all' ]
+if [ $1 == "--all" ]
 then
     yes|sudo apt-get install xhtml2pdf
 fi
