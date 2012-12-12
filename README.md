@@ -1,9 +1,11 @@
 #Description
 yasg (Yet another site generator) is a simple document generator which generates a html document for your project in PHP.
 ##Installation
-<code>./configure</code>
+<code>
+./configure</code>
 ##Options
-<code>./generate [directory]  
+<code>
+./generate [directory]  
 ./generate [directory] -desc [discription file]  
 ./generate [directory] --allfuncs  
 ./generate [directory] --exvars  
@@ -12,4 +14,5 @@ yasg (Yet another site generator) is a simple document generator which generates
 ./generate [directory] -o [html file name]  
 </code>
 ##Example
-<code>./generate /var/www/mockstock --desc description.txt --exfuncs --allfuncs -o mockstock.doc.htm</code>
+<code>
+./generate /var/www/mockstock --desc description.txt --exfuncs --allfuncs -o mockstock.doc.htm</code>
