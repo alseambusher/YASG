@@ -6,6 +6,7 @@ exfuncs=0
 exvars=0
 allfuncs=0
 enable_desc=0
+enable_out_file=0
 description=""
 function get_user_func {
         #echo "<?include('$i');echo '#####';print_r(get_defined_vars());?>"|php5
@@ -73,6 +74,11 @@ do
         description=`cat $arg`
         enable_desc=0
     fi
+    if [ $enable_out_file -eq 1 ]
+    then
+        FILE_NAME=$arg
+        enable_out_file=0
+    fi
     if [ $arg == '--exvars' ]
     then
         exvars=1
@@ -88,6 +94,9 @@ do
     elif [ $arg == '--desc' ]
     then
         enable_desc=1
+    elif [ $arg == '-o' ]
+    then
+        enable_out_file=1
     fi
 done
 cat template_head >$FILE_NAME
