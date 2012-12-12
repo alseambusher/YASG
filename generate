@@ -7,6 +7,7 @@ exvars=0
 allfuncs=0
 enable_desc=0
 enable_out_file=0
+pdf=0
 description=""
 function get_user_func {
         #echo "<?include('$i');echo '#####';print_r(get_defined_vars());?>"|php5
@@ -91,6 +92,9 @@ do
     elif [ $arg == '--exvars' ]
     then
         exvars=1
+    elif [ $arg == '--pdf' ]
+    then
+        pdf=1
     elif [ $arg == '--desc' ]
     then
         enable_desc=1
@@ -130,3 +134,7 @@ do
     echo "<hr />" >>$FILE_NAME
 done
 echo "</div></body></html>" >>$FILE_NAME
+if [ $pdf -eq 1 ]
+then
+    xhtml2pdf $FILE_NAME
+fi
